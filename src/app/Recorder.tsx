@@ -521,6 +521,7 @@ export default function Recorder() {
       recordingIntervalRef.current = null;
     }
 
+    // Hentikan screen recorder
     if (
       mediaData.current.screenRecorder &&
       mediaData.current.screenRecorder.state !== 'inactive'
@@ -528,12 +529,27 @@ export default function Recorder() {
       mediaData.current.screenRecorder.stop();
     }
 
+    // Hentikan webcam recorder
     if (
       mediaData.current.webcamRecorder &&
       mediaData.current.webcamRecorder.state !== 'inactive'
     ) {
       mediaData.current.webcamRecorder.stop();
     }
+
+    // Tambahkan: Hentikan semua track media
+    if (mediaData.current.videoTrack) {
+      mediaData.current.videoTrack.stop();
+    }
+
+    if (mediaData.current.audioTrack) {
+      mediaData.current.audioTrack.stop();
+    }
+
+    // Tambahkan: Hentikan track screen sharing
+    const screenTracks =
+      mediaData.current.screenRecorder?.stream?.getTracks() || [];
+    screenTracks.forEach((track) => track.stop());
 
     setIsRecording(false);
     setIsCameraPaused(false);
