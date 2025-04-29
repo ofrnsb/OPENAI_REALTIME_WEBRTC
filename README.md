@@ -11,5 +11,5 @@
 - Pause microphone and/or camera
 - Interview timer
 
-> ps: You have to insert your API Keys
+> PS: You have to insert your API Keys
 <p align="center"><strong>OB</strong></p>
